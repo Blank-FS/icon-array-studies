@@ -55,21 +55,24 @@ const IconArrayPage = () => {
   const [iconArray, setIconArray] = useState<string[][]>([]);
 
   useEffect(() => {
-    const totalCells = rows * columns;
+    const row = 15;
+    const col = 15;
+    const highlight = 15;
+    const totalCells = row * col;
     const positions = Array.from({ length: totalCells }, (_, index) => ({
-      row: Math.floor(index / columns),
-      col: index % columns,
+      row: Math.floor(index / col),
+      col: index % col,
     }));
     shuffleArray(positions);
-    const array = Array.from({ length: rows }, () =>
+    const array = Array.from({ length: row }, () =>
       Array(columns).fill("normal")
     );
-    for (let i = 0; i < highlighted; i++) {
+    for (let i = 0; i < highlight; i++) {
       const { row, col } = positions[i];
       array[row][col] = "highlighted";
     }
     setIconArray(array);
-  });
+  }, []);
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof IconArray>>({
