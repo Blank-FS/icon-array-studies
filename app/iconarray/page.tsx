@@ -69,7 +69,7 @@ const IconArrayPage = () => {
       array[row][col] = "highlighted";
     }
     setIconArray(array);
-  }, []);
+  });
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof IconArray>>({
@@ -112,7 +112,7 @@ const IconArrayPage = () => {
     setIconArray(array);
   }
 
-  function shuffleArray(array: any[]) {
+  function shuffleArray(array: { row: number; col: number }[]) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
